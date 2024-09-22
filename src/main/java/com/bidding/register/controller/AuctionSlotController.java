@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.bidding.register.Entity.AuctionSlot;
+import com.bidding.register.dto.AvailableSlotDTO;
+import com.bidding.register.dto.SlotDuration;
 import com.bidding.register.service.AuctionSlotService;
 
 import java.util.List;
@@ -40,5 +42,11 @@ public class AuctionSlotController {
     public ResponseEntity<Void> deleteAuctionSlot(@PathVariable Long slotId) {
         auctionSlotService.deleteAuctionSlot(slotId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    @PostMapping("/availableSlot")
+    public ResponseEntity<AvailableSlotDTO> getAvailableSlot(@RequestBody SlotDuration slotDuration){
+    	AvailableSlotDTO availableSlotDTO = auctionSlotService.getAvaiSlotDTO(slotDuration);
+    	return new ResponseEntity<>(availableSlotDTO,HttpStatus.OK);
     }
 }

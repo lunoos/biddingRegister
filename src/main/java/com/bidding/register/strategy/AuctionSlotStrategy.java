@@ -6,4 +6,6 @@ import com.bidding.register.dto.SlotDuration;
 public interface AuctionSlotStrategy {
 
 	public AvailableSlotDTO getAvailableSlot(SlotDuration slotDuration);
+	
+	public String getName();
 }

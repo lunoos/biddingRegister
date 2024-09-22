@@ -1,6 +1,7 @@
 package com.bidding.register.strategy;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -27,18 +28,18 @@ public class LatestAvailableSlotStrategy implements AuctionSlotStrategy  {
 	@Override
 	public AvailableSlotDTO getAvailableSlot(SlotDuration slotDuration) {
 		// TODO Auto-generated method stub
-		List<Config> configListAvlSlt = configService.getConfigByCode(Constants.AVL_SLOT_CONFIG_CODE);
-		List<Config> configListBufTime = configService.getConfigByCode(Constants.AVL_SLOT_CONFIG_CODE);
+		//List<Config> configListAvlSlt = configService.getConfigByCode(Constants.AVL_SLOT_CONFIG_CODE);
+		List<Config> configListBufTime = configService.getConfigByCode(Constants.BUFF_SLOT_CONFIG_CODE);
 		
-		String strTime = configListAvlSlt.get(0).getConfigValue();
-		Long buffTimeInMin = Long.parseLong(configListAvlSlt.get(0).getConfigValue());
+		//String strTime = configListAvlSlt.get(0).getConfigValue();
+		Long buffTimeInMin = Long.parseLong(configListBufTime.get(0).getConfigValue());
         
-        // Define the formatter with the exact pattern
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd h:mm:ss.SSSSSS a");
-        
+        // Define the formatter with the exact 2
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd hh:mm:ss a");
+        //LocalDateTime zonedDateTime = ZonedDateTime.parse(strTime).toLocalDateTime();
         // Parse the string into LocalDateTime
-        LocalDateTime convertedTime = LocalDateTime.parse(strTime, formatter);
-        
+        //LocalDateTime convertedTime = LocalDateTime.parse(strTime, formatter);
+        LocalDateTime convertedTime = LocalDateTime.now();
         LocalDateTime currentTime = LocalDateTime.now();
         
         LocalDateTime currentTimePlusMin = currentTime.plusMinutes(buffTimeInMin);
@@ -54,6 +55,11 @@ public class LatestAvailableSlotStrategy implements AuctionSlotStrategy  {
         availableSlotDTO.setStartTime(startTime);
         availableSlotDTO.setEndTime(endTime);
 		return availableSlotDTO;
+	}
+
+	@Override
+	public String getName() {
+		return "latestAvailableSlotStrategy";
 	}
 
 }

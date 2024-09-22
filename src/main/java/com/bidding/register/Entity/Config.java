@@ -131,4 +131,14 @@ public class Config {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+
+
+	@Override
+	public String toString() {
+		return "Config [configId=" + configId + ", configName=" + configName + ", configCode=" + configCode
+				+ ", configDesc=" + configDesc + ", configValue=" + configValue + ", updatedAt=" + updatedAt + "]";
+	}
+	
+	
 }

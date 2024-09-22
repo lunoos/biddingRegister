@@ -23,7 +23,7 @@ public class AuctionSlotServiceImpl implements AuctionSlotService {
     private  AuctionSlotRepository auctionSlotRepository;
 	
 	@Autowired
-	private Map<String, AuctionSlotStrategy> map;
+	private Map<String, AuctionSlotStrategy> auctionStatMap;
 	
 	@Value("${app.auctionStrategy}")
 	private String auctionSlotStrategy;
@@ -51,7 +51,7 @@ public class AuctionSlotServiceImpl implements AuctionSlotService {
      */
 	@Override
 	public AvailableSlotDTO getAvaiSlotDTO(SlotDuration duration) {
-		return map.get(auctionSlotStrategy).getAvailableSlot(duration);
+		return auctionStatMap.get(auctionSlotStrategy).getAvailableSlot(duration);
 	}
 
 }
