@@ -17,7 +17,7 @@ import com.bidding.register.Entity.Bidder;
 import com.bidding.register.service.BidderService;
 
 @RestController
-@RequestMapping("/bidders")
+@RequestMapping("/bidding")
 public class BidderController {
 
 	@Autowired

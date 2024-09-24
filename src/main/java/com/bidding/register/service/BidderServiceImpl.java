@@ -9,13 +9,15 @@ import org.springframework.stereotype.Service;
 import com.bidding.register.Entity.Bidder;
 import com.bidding.register.repository.BidderRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class BidderServiceImpl implements BidderService {
 
 	@Autowired
     private  BidderRepository bidderRepository;
 
-
+	@Transactional
     public Bidder createBidder(Bidder bidder) {
         return bidderRepository.save(bidder);
     }
@@ -32,6 +34,7 @@ public class BidderServiceImpl implements BidderService {
         return bidderRepository.findBySlotId(slotId);
     }
 
+    @Transactional
     public void deleteBidder(Long bidderId) {
         bidderRepository.deleteById(bidderId);
     }
